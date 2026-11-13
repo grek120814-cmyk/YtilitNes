@@ -1,0 +1,1193 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>YilitNes — Офіційний сайт системного оптимізатора Windows</title>
+  <style>
+    :root {
+      --bg-main: #0c0e12;
+      --bg-surface: #13161d;
+      --bg-card: #191d26;
+      --bg-hover: #212633;
+      --border: #272d3b;
+      --accent: #3b82f6;
+      --accent-hover: #2563eb;
+      --accent-glow: rgba(59, 130, 246, 0.16);
+      --text-main: #f3f4f6;
+      --text-muted: #9ca3af;
+      --success: #10b981;
+      --radius: 14px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+      background-color: var(--bg-main);
+      color: var(--text-main);
+      line-height: 1.65;
+    }
+
+    .container {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Навігація */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(12, 14, 18, 0.88);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-inner {
+      height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--text-main);
+      text-decoration: none;
+    }
+
+    .logo-badge {
+      width: 28px;
+      height: 28px;
+      border-radius: 8px;
+      background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+      font-weight: 800;
+      color: #fff;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+    }
+
+    .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.95rem;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: var(--text-main);
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .lang-toggle {
+      display: flex;
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 3px;
+    }
+
+    .lang-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      padding: 4px 10px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .lang-btn.active {
+      background: var(--bg-hover);
+      color: var(--text-main);
+    }
+
+    /* Кнопки */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      border: none;
+      border-radius: 10px;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+      padding: 10px 20px;
+      font-size: 0.95rem;
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-hover);
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary {
+      background: var(--bg-card);
+      color: var(--text-main);
+      border: 1px solid var(--border);
+      padding: 10px 20px;
+      font-size: 0.95rem;
+    }
+
+    .btn-secondary:hover {
+      background: var(--bg-hover);
+    }
+
+    .btn-lg {
+      padding: 14px 28px;
+      font-size: 1.02rem;
+    }
+
+    /* Головний екран (Hero) */
+    .hero {
+      padding: 84px 0 76px;
+      text-align: center;
+      background: radial-gradient(circle at 50% 0%, var(--accent-glow) 0%, transparent 62%);
+    }
+
+    .version-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      padding: 6px 14px;
+      border-radius: 99px;
+      font-size: 0.84rem;
+      color: #60a5fa;
+      font-weight: 600;
+      margin-bottom: 22px;
+    }
+
+    .hero h1 {
+      font-size: 3.1rem;
+      line-height: 1.15;
+      max-width: 780px;
+      margin: 0 auto 20px;
+      letter-spacing: -0.6px;
+    }
+
+    .hero p {
+      color: var(--text-muted);
+      font-size: 1.15rem;
+      max-width: 650px;
+      margin: 0 auto 34px;
+    }
+
+    .hero-actions {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-bottom: 42px;
+    }
+
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      max-width: 820px;
+      margin: 0 auto;
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px;
+    }
+
+    .stat-item strong {
+      display: block;
+      font-size: 1.25rem;
+      color: var(--text-main);
+    }
+
+    .stat-item span {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+
+    /* Заголовки секцій */
+    section {
+      padding: 80px 0;
+    }
+
+    .section-header {
+      text-align: center;
+      max-width: 640px;
+      margin: 0 auto 52px;
+    }
+
+    .section-header h2 {
+      font-size: 2.15rem;
+      margin-bottom: 12px;
+    }
+
+    .section-header p {
+      color: var(--text-muted);
+      font-size: 1.02rem;
+    }
+
+    /* Про програму (Можливості) */
+    .about-section {
+      background: var(--bg-surface);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .modules-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+
+    .module-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 30px;
+      transition: border-color 0.2s;
+    }
+
+    .module-card:hover {
+      border-color: var(--accent);
+    }
+
+    .module-num {
+      display: inline-block;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: #60a5fa;
+      background: rgba(59, 130, 246, 0.12);
+      padding: 4px 10px;
+      border-radius: 6px;
+      margin-bottom: 14px;
+    }
+
+    .module-card h3 {
+      font-size: 1.25rem;
+      margin-bottom: 10px;
+    }
+
+    .module-card p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-bottom: 16px;
+    }
+
+    .module-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      font-size: 0.88rem;
+      color: #d1d5db;
+    }
+
+    .module-list li::before {
+      content: "• ";
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    /* Як скачати */
+    .download-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 28px;
+      align-items: stretch;
+    }
+
+    .dl-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 32px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .dl-card.featured {
+      border-color: var(--accent);
+      background: linear-gradient(180deg, rgba(59, 130, 246, 0.08) 0%, var(--bg-surface) 100%);
+    }
+
+    .dl-tag {
+      display: inline-block;
+      width: fit-content;
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: #60a5fa;
+      background: rgba(59, 130, 246, 0.14);
+      padding: 4px 10px;
+      border-radius: 6px;
+      margin-bottom: 14px;
+    }
+
+    .dl-card h3 {
+      font-size: 1.45rem;
+      margin-bottom: 8px;
+    }
+
+    .dl-card p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-bottom: 22px;
+    }
+
+    .dl-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 24px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+      font-size: 0.9rem;
+    }
+
+    .dl-meta div {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .dl-meta span {
+      color: var(--text-muted);
+    }
+
+    .install-steps {
+      margin-top: 36px;
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px;
+    }
+
+    .install-steps h4 {
+      font-size: 1.1rem;
+      margin-bottom: 16px;
+    }
+
+    .steps-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .mini-step strong {
+      display: block;
+      color: #60a5fa;
+      font-size: 0.9rem;
+      margin-bottom: 4px;
+    }
+
+    .mini-step p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    /* Як користуватись (Інструкція з вкладками) */
+    .guide-section {
+      background: var(--bg-surface);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .guide-tabs {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 32px;
+    }
+
+    .guide-tab {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      padding: 10px 18px;
+      border-radius: 10px;
+      font-size: 0.92rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .guide-tab:hover {
+      color: var(--text-main);
+      background: var(--bg-hover);
+    }
+
+    .guide-tab.active {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
+    }
+
+    .guide-panel {
+      display: none;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 34px;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
+    .guide-panel.active {
+      display: block;
+    }
+
+    .guide-panel h3 {
+      font-size: 1.4rem;
+      margin-bottom: 12px;
+    }
+
+    .guide-panel > p {
+      color: var(--text-muted);
+      margin-bottom: 22px;
+    }
+
+    .guide-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .guide-step-item {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      padding: 16px;
+      border-radius: 10px;
+    }
+
+    .step-badge {
+      min-width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: rgba(59, 130, 246, 0.16);
+      color: #60a5fa;
+      font-weight: 700;
+      font-size: 0.85rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .guide-step-item strong {
+      display: block;
+      margin-bottom: 3px;
+      font-size: 0.98rem;
+    }
+
+    .guide-step-item span {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    /* FAQ */
+    .faq-list {
+      max-width: 820px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .faq-item {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .faq-question {
+      width: 100%;
+      background: transparent;
+      border: none;
+      color: var(--text-main);
+      padding: 18px 22px;
+      text-align: left;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .faq-answer {
+      display: none;
+      padding: 0 22px 18px;
+      color: var(--text-muted);
+      font-size: 0.94rem;
+    }
+
+    .faq-item.open .faq-answer {
+      display: block;
+    }
+
+    /* Сповіщення про старт завантаження */
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: var(--bg-card);
+      border: 1px solid var(--accent);
+      color: var(--text-main);
+      padding: 14px 20px;
+      border-radius: 10px;
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.5);
+      font-size: 0.92rem;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(12px);
+      transition: all 0.25s ease;
+      z-index: 100;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Підвал */
+    .footer {
+      border-top: 1px solid var(--border);
+      padding: 30px 0;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .footer a {
+      color: var(--text-muted);
+      text-decoration: none;
+    }
+
+    .footer a:hover {
+      color: var(--text-main);
+    }
+
+    @media (max-width: 860px) {
+      .hero h1 {
+        font-size: 2.25rem;
+      }
+
+      .hero-stats,
+      .modules-grid,
+      .download-grid,
+      .steps-row {
+        grid-template-columns: 1fr;
+      }
+
+      .nav-links {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Навігація -->
+  <header class="navbar">
+    <div class="container nav-inner">
+      <a href="#" class="logo">
+        <span class="logo-badge">Y</span>
+        YilitNes
+      </a>
+      <nav class="nav-links">
+        <a href="#about" data-i18n="nav_about">Про програму</a>
+        <a href="#download" data-i18n="nav_download">Як скачати</a>
+        <a href="#guide" data-i18n="nav_guide">Як користуватись</a>
+        <a href="#faq" data-i18n="nav_faq">Питання</a>
+      </nav>
+      <div class="nav-right">
+        <div class="lang-toggle">
+          <button class="lang-btn active" data-lang="uk">UA</button>
+          <button class="lang-btn" data-lang="en">EN</button>
+        </div>
+        <a href="#download" class="btn btn-primary" data-i18n="btn_get">Скачати</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero -->
+    <section class="hero">
+      <div class="container">
+        <div class="version-pill">Windows 10 / 11 (x64) • NVStudio</div>
+        <h1 data-i18n="hero_title">YilitNes — швидке очищення та контроль системи Windows</h1>
+        <p data-i18n="hero_desc">
+          Легка утиліта для моніторингу навантаження ПК, миттєвого звільнення оперативної пам'яті, видалення тимчасових файлів, керування процесами та автозавантаженням.
+        </p>
+        <div class="hero-actions">
+          <a href="#download" class="btn btn-primary btn-lg" data-i18n="hero_btn_dl">Перейти до завантаження</a>
+          <a href="#guide" class="btn btn-secondary btn-lg" data-i18n="hero_btn_guide">Інструкція з використання</a>
+        </div>
+        <div class="hero-stats">
+          <div class="stat-item">
+            <strong>WinAPI</strong>
+            <span data-i18n="stat_1">Нативне очищення ОЗП</span>
+          </div>
+          <div class="stat-item">
+            <strong>5 вкладок</strong>
+            <span data-i18n="stat_2">Усі інструменти в одному вікні</span>
+          </div>
+          <div class="stat-item">
+            <strong>3 мови</strong>
+            <span data-i18n="stat_3">Українська, English, Русский</span>
+          </div>
+          <div class="stat-item">
+            <strong>Безкоштовно</strong>
+            <span data-i18n="stat_4">Без підписок і реклами</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Про програму -->
+    <section class="about-section" id="about">
+      <div class="container">
+        <div class="section-header">
+          <h2 data-i18n="about_title">Що вміє програма YilitNes</h2>
+          <p data-i18n="about_sub">Програма створена для швидкого обслуговування Windows без складних налаштувань і фонових служб.</p>
+        </div>
+
+        <div class="modules-grid">
+          <article class="module-card">
+            <span class="module-num">Модуль 01</span>
+            <h3 data-i18n="m1_title">Моніторинг ресурсів та очищення ОЗП</h3>
+            <p data-i18n="m1_desc">Показує актуальне завантаження процесора, оперативної пам'яті та диска у відсотках і гігабайтах.</p>
+            <ul class="module-list">
+              <li data-i18n="m1_l1">Інформація про модель CPU, обсяг ОЗП та версію ОС</li>
+              <li data-i18n="m1_l2">Очищення робочих наборів процесів через WinAPI EmptyWorkingSet</li>
+              <li data-i18n="m1_l3">Зменшення споживання пам'яті перед запуском ігор або важких програм</li>
+            </ul>
+          </article>
+
+          <article class="module-card">
+            <span class="module-num">Модуль 02</span>
+            <h3 data-i18n="m2_title">Очищення системного сміття та кешу</h3>
+            <p data-i18n="m2_desc">Сканує тимчасові папки Windows та кеш популярних браузерів, показуючи точний розмір файлів перед видаленням.</p>
+            <ul class="module-list">
+              <li data-i18n="m2_l1">Папка користувача %TEMP% та системна папка Windows Temp</li>
+              <li data-i18n="m2_l2">Кеш браузерів Google Chrome, Microsoft Edge та Mozilla Firefox</li>
+              <li data-i18n="m2_l3">Очищення кошика на всіх локальних дисках в один клік</li>
+            </ul>
+          </article>
+
+          <article class="module-card">
+            <span class="module-num">Модуль 03</span>
+            <h3 data-i18n="m3_title">Диспетчер процесів і пріоритетів</h3>
+            <p data-i18n="m3_desc">Повний список запущених процесів із відображенням PID, видавця, використаної пам'яті та поточного пріоритету.</p>
+            <ul class="module-list">
+              <li data-i18n="m3_l1">Зміна пріоритету процесу: Low, Below Normal, Normal, Above Normal, High, Realtime</li>
+              <li data-i18n="m3_l2">Фільтр та підсвічування довірених процесів за назвою видавця</li>
+              <li data-i18n="m3_l3">Миттєве примусове завершення завислих програм</li>
+            </ul>
+          </article>
+
+          <article class="module-card">
+            <span class="module-num">Модуль 04</span>
+            <h3 data-i18n="m4_title">Автозавантаження та швидкі дії</h3>
+            <p data-i18n="m4_desc">Допомагає прискорити запуск Windows і вирішувати типові збої системи однією кнопкою.</p>
+            <ul class="module-list">
+              <li data-i18n="m4_l1">Зручні перемикачі для вмикання та вимикання програм в автозавантаженні</li>
+              <li data-i18n="m4_l2">Швидкий перезапуск Провідника Windows (explorer.exe)</li>
+              <li data-i18n="m4_l3">Очищення кешу DNS та активація схеми живлення «Висока продуктивність»</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Як скачати -->
+    <section id="download">
+      <div class="container">
+        <div class="section-header">
+          <h2 data-i18n="dl_title">Як скачати та встановити YilitNes</h2>
+          <p data-i18n="dl_sub">Оберіть зручний формат завантаження для Windows 10 або Windows 11 (64-bit).</p>
+        </div>
+
+        <div class="download-grid">
+          <div class="dl-card featured">
+            <div>
+              <span class="dl-tag" data-i18n="dl_rec">Рекомендовано</span>
+              <h3>YilitNes Installer (Setup)</h3>
+              <p data-i18n="dl_inst_desc">Стандартний інсталятор. Автоматично розпакує файли програми та створить ярлик на робочому столі й у меню «Пуск».</p>
+            </div>
+            <div>
+              <div class="dl-meta">
+                <div><span data-i18n="dl_ver">Версія:</span><strong>1.0 Release</strong></div>
+                <div><span data-i18n="dl_os">Сумісність:</span><strong>Windows 10 / 11 (x64)</strong></div>
+                <div><span data-i18n="dl_file">Файл:</span><strong>YilitNes_Setup.exe</strong></div>
+              </div>
+              <a href="YilitNes_Setup.exe" download class="btn btn-primary btn-lg" style="width: 100%;" onclick="notifyDownload('YilitNes_Setup.exe')" data-i18n="dl_btn_inst">
+                Скачати інсталятор (.exe)
+              </a>
+            </div>
+          </div>
+
+          <div class="dl-card">
+            <div>
+              <span class="dl-tag">Portable</span>
+              <h3>YilitNes Portable (ZIP)</h3>
+              <p data-i18n="dl_port_desc">Архів із готовою програмою, яка не потребує встановлення. Можна запускати з будь-якої папки або флешки.</p>
+            </div>
+            <div>
+              <div class="dl-meta">
+                <div><span data-i18n="dl_ver">Версія:</span><strong>1.0 Release</strong></div>
+                <div><span data-i18n="dl_os">Сумісність:</span><strong>Windows 10 / 11 (x64)</strong></div>
+                <div><span data-i18n="dl_file">Файл:</span><strong>YilitNes_Portable.zip</strong></div>
+              </div>
+              <a href="YilitNes_Portable.zip" download class="btn btn-secondary btn-lg" style="width: 100%;" onclick="notifyDownload('YilitNes_Portable.zip')" data-i18n="dl_btn_port">
+                Скачати архів (.zip)
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="install-steps">
+          <h4 data-i18n="inst_steps_title">3 кроки для правильного запуску:</h4>
+          <div class="steps-row">
+            <div class="mini-step">
+              <strong data-i18n="s1_t">1. Завантажте файл</strong>
+              <p data-i18n="s1_d">Натисніть кнопку завантаження вище та збережіть інсталятор або архів на ПК.</p>
+            </div>
+            <div class="mini-step">
+              <strong data-i18n="s2_t">2. Підтвердіть запуск у Windows</strong>
+              <p data-i18n="s2_d">Якщо з'явиться вікно SmartScreen («Windows захистила ваш ПК»), натисніть «Докладніше» → «Виконати в будь-якому разі».</p>
+            </div>
+            <div class="mini-step">
+              <strong data-i18n="s3_t">3. Запускайте від імені адміністратора</strong>
+              <p data-i18n="s3_d">Для очищення системної папки Windows Temp, зміни високих пріоритетів та скидання DNS потрібні права адміністратора.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Як користуватись -->
+    <section class="guide-section" id="guide">
+      <div class="container">
+        <div class="section-header">
+          <h2 data-i18n="guide_title">Як користуватись програмою</h2>
+          <p data-i18n="guide_sub">Оберіть потрібний розділ меню YilitNes, щоб переглянути покрокову інструкцію.</p>
+        </div>
+
+        <div class="guide-tabs">
+          <button class="guide-tab active" data-guide="ram" data-i18n="gt_1">1. Очищення ОЗП</button>
+          <button class="guide-tab" data-guide="clean" data-i18n="gt_2">2. Видалення сміття</button>
+          <button class="guide-tab" data-guide="proc" data-i18n="gt_3">3. Процеси та пріоритети</button>
+          <button class="guide-tab" data-guide="start" data-i18n="gt_4">4. Автозавантаження</button>
+          <button class="guide-tab" data-guide="set" data-i18n="gt_5">5. Налаштування</button>
+        </div>
+
+        <!-- Вкладка 1 -->
+        <div class="guide-panel active" id="guide-ram">
+          <h3 data-i18n="g1_h">Як звільнити оперативну пам'ять (Вкладка «Моніторинг»)</h3>
+          <p data-i18n="g1_p">На головному екрані програми відображаються кругові індикатори завантаження процесора, ОЗП та диска.</p>
+          <div class="guide-steps">
+            <div class="guide-step-item">
+              <span class="step-badge">1</span>
+              <div>
+                <strong data-i18n="g1_s1_t">Перевірте поточне навантаження</strong>
+                <span data-i18n="g1_s1_d">Подивіться на центральний індикатор «Оперативна пам'ять», де вказано зайнятий обсяг (наприклад, 8,8 GB із 15,8 GB).</span>
+              </div>
+            </div>
+            <div class="guide-step-item">
+              <span class="step-badge">2</span>
+              <div>
+                <strong data-i18n="g1_s2_t">Натисніть синю кнопку «Очистити ОЗП»</strong>
+                <span data-i18n="g1_s2_d">Програма викличе системну функцію WinAPI EmptyWorkingSet і вивантажить невикористовувані кешовані дані фонових програм.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Вкладка 2 -->
+        <div class="guide-panel" id="guide-clean">
+          <h3 data-i18n="g2_h">Як очистити тимчасові файли та кеш (Вкладка «Очищення»)</h3>
+          <p data-i18n="g2_p">Цей розділ дозволяє безпечно видалити накопичене сміття системи та браузерів.</p>
+          <div class="guide-steps">
+            <div class="guide-step-item">
+              <span class="step-badge">1</span>
+              <div>
+                <strong data-i18n="g2_s1_t">Натисніть кнопку «Сканувати»</strong>
+                <span data-i18n="g2_s1_d">Програма перевірить папки %TEMP%, Windows Temp, кеш Chrome/Edge/Firefox та Кошик і покаже обсяг кожного пункту.</span>
+              </div>
+            </div>
+            <div class="guide-step-item">
+              <span class="step-badge">2</span>
+              <div>
+                <strong data-i18n="g2_s2_t">Позначте галочками потрібні категорії</strong>
+                <span data-i18n="g2_s2_d">Залиште активними ті пункти, які хочете очистити (наприклад, залиште Кошик знятим, якщо там є важливі файли).</span>
+              </div>
+            </div>
+            <div class="guide-step-item">
+              <span class="step-badge">3</span>
+              <div>
+                <strong data-i18n="g2_s3_t">Натисніть «Очистити»</strong>
+                <span data-i18n="g2_s3_d">Після завершення вгорі з'явиться повідомлення з точним обсягом звільненого місця на диску.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Вкладка 3 -->
+        <div class="guide-panel" id="guide-proc">
+          <h3 data-i18n="g3_h">Як керувати процесами та їх пріоритетом (Вкладка «Процеси»)</h3>
+          <p data-i18n="g3_p">Допомагає виділити більше ресурсів процесора для гри чи робочої програми або закрити завислий процес.</p>
+          <div class="guide-steps">
+            <div class="guide-step-item">
+              <span class="step-badge">1</span>
+              <div>
+                <strong data-i18n="g3_s1_t">Знайдіть потрібний процес у таблиці</strong>
+                <span data-i18n="g3_s1_d">Використовуйте рядок пошуку або сортування за пам'яттю, назвою чи PID.</span>
+              </div>
+            </div>
+            <div class="guide-step-item">
+              <span class="step-badge">2</span>
+              <div>
+                <strong data-i18n="g3_s2_t">Змініть пріоритет на панелі зверху</strong>
+                <span data-i18n="g3_s2_d">Клікніть по процесу та натисніть одну з кнопок пріоритету (Low, Normal, High тощо). Уникайте Realtime для важких ігор, щоб не завис інтерфейс.</span>
+              </div>
+            </div>
+            <div class="guide-step-item">
+              <span class="step-badge">3</span>
+              <div>
+                <strong data-i18n="g3_s3_t">Завершення процесу</strong>
+                <span data-i18n="g3_s3_d">Якщо програма не відповідає, виділіть її та натисніть «Завершити» (End Task).</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Вкладка 4 -->
+        <div class="guide-panel" id="guide-start">
+          <h3 data-i18n="g4_h">Автозавантаження та швидкі системні дії (Вкладка «Автозавантаження»)</h3>
+          <p data-i18n="g4_p">Прискорює завантаження Windows при ввімкненні комп'ютера.</p>
+          <div class="guide-steps">
+            <div class="guide-step-item">
+              <span class="step-badge">1</span>
+              <div>
+                <strong data-i18n="g4_s1_t">Вимкніть зайві програми при старті</strong>
+                <span data-i18n="g4_s1_d">Переведіть перемикач навпроти непотрібної програми в неактивне положення — вона більше не запускатиметься автоматично разом із Windows.</span>
+              </div>
+            </div>
+            <div class="guide-step-item">
+              <span class="step-badge">2</span>
+              <div>
+                <strong data-i18n="g4_s2_t">Використовуйте картки швидких дій</strong>
+                <span data-i18n="g4_s2_d">Натисніть «Перезапустити» біля Провідника, якщо зависла панель завдань, «Очистити» біля DNS при проблемах з інтернетом або увімкніть схему живлення «Висока продуктивність».</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Вкладка 5 -->
+        <div class="guide-panel" id="guide-set">
+          <h3 data-i18n="g5_h">Мова інтерфейсу та довірені процеси (Вкладка «Налаштування»)</h3>
+          <p data-i18n="g5_p">Налаштуйте програму під себе в два кліки.</p>
+          <div class="guide-steps">
+            <div class="guide-step-item">
+              <span class="step-badge">1</span>
+              <div>
+                <strong data-i18n="g5_s1_t">Зміна мови без перезапуску</strong>
+                <span data-i18n="g5_s1_d">Оберіть English, Українська або Русский — інтерфейс миттєво перекладеться.</span>
+              </div>
+            </div>
+            <div class="guide-step-item">
+              <span class="step-badge">2</span>
+              <div>
+                <strong data-i18n="g5_s2_t">Список довірених видавців</strong>
+                <span data-i18n="g5_s2_d">Вкажіть назву компанії-розробника (наприклад, NVStudio або Microsoft), щоб її процеси позначалися у диспетчері як довірені.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq">
+      <div class="container">
+        <div class="section-header">
+          <h2 data-i18n="faq_title">Часті запитання</h2>
+        </div>
+
+        <div class="faq-list">
+          <div class="faq-item">
+            <button class="faq-question">
+              <span data-i18n="q1">Чи безпечно очищати ОЗП та папки Temp через YilitNes?</span>
+              <span>+</span>
+            </button>
+            <div class="faq-answer" data-i18n="a1">
+              Так. Очищення ОЗП використовує стандартний механізм Windows API (EmptyWorkingSet), який не закриває відкриті програми, а лише звільняє невикористовуваний кеш пам'яті. У папках Temp видаляються лише тимчасові файли, які не заблоковані системою.
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question">
+              <span data-i18n="q2">Чому деякі файли в Windows Temp не видаляються?</span>
+              <span>+</span>
+            </button>
+            <div class="faq-answer" data-i18n="a2">
+              Файли, які прямо зараз використовуються активними службами Windows або відкритими програмами, заблоковані системою. YilitNes автоматично пропускає їх, щоб не порушити стабільність роботи ПК.
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question">
+              <span data-i18n="q3">Чи потрібно запускати програму від імені адміністратора?</span>
+              <span>+</span>
+            </button>
+            <div class="faq-answer" data-i18n="a3">
+              Для перегляду моніторингу та очищення %TEMP% користувача права адміністратора не обов'язкові. Проте для очищення системної папки C:\Windows\Temp, скидання кешу DNS та зміни пріоритету системних процесів бажано запускати YilitNes від імені адміністратора.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <span>© 2026 YilitNes • Розробник: NVStudio</span>
+      <a href="#" data-i18n="back_top">На початок сторінки ↑</a>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast"></div>
+
+  <script>
+    // 1. Перемикання вкладок в інструкції «Як користуватись»
+    const guideTabs = document.querySelectorAll('.guide-tab');
+    const guidePanels = document.querySelectorAll('.guide-panel');
+
+    guideTabs.forEach((tab) => {
+      tab.addEventListener('click', () => {
+        guideTabs.forEach((t) => t.classList.remove('active'));
+        guidePanels.forEach((p) => p.classList.remove('active'));
+
+        tab.classList.add('active');
+        document.getElementById(`guide-${tab.dataset.guide}`).classList.add('active');
+      });
+    });
+
+    // 2. Акордеон FAQ
+    document.querySelectorAll('.faq-question').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const item = btn.parentElement;
+        const isOpen = item.classList.contains('open');
+        document.querySelectorAll('.faq-item').forEach((i) => {
+          i.classList.remove('open');
+          i.querySelector('.faq-question span:last-child').textContent = '+';
+        });
+        if (!isOpen) {
+          item.classList.add('open');
+          btn.querySelector('span:last-child').textContent = '−';
+        }
+      });
+    });
+
+    // 3. Сповіщення при натисканні на кнопку скачування
+    function notifyDownload(filename) {
+      const toast = document.getElementById('toast');
+      toast.textContent = `Завантаження ${filename} розпочато...`;
+      toast.classList.add('show');
+      setTimeout(() => {
+        toast.classList.remove('show');
+      }, 3500);
+    }
+
+    // 4. Перемикання мови сайту (UA / EN)
+    const i18n = {
+      uk: {
+        nav_about: 'Про програму',
+        nav_download: 'Як скачати',
+        nav_guide: 'Як користуватись',
+        nav_faq: 'Питання',
+        btn_get: 'Скачати',
+        hero_title: 'YilitNes — швидке очищення та контроль системи Windows',
+        hero_desc:
+          "Легка утиліта для моніторингу навантаження ПК, миттєвого звільнення оперативної пам'яті, видалення тимчасових файлів, керування процесами та автозавантаженням.",
+        hero_btn_dl: 'Перейти до завантаження',
+        hero_btn_guide: 'Інструкція з використання',
+        stat_1: "Нативне очищення ОЗП",
+        stat_2: 'Усі інструменти в одному вікні',
+        stat_3: 'Українська, English, Русский',
+        stat_4: 'Без підписок і реклами',
+        about_title: 'Що вміє програма YilitNes',
+        about_sub: 'Програма створена для швидкого обслуговування Windows без складних налаштувань і фонових служб.',
+        m1_title: "Моніторинг ресурсів та очищення ОЗП",
+        m1_desc: "Показує актуальне завантаження процесора, оперативної пам'яті та диска у відсотках і гігабайтах.",
+        m1_l1: 'Інформація про модель CPU, обсяг ОЗП та версію ОС',
+        m1_l2: 'Очищення робочих наборів процесів через WinAPI EmptyWorkingSet',
+        m1_l3: "Зменшення споживання пам'яті перед запуском ігор або важких програм",
+        m2_title: 'Очищення системного сміття та кешу',
+        m2_desc: 'Сканує тимчасові папки Windows та кеш популярних браузерів, показуючи точний розмір файлів перед видаленням.',
+        m2_l1: 'Папка користувача %TEMP% та системна папка Windows Temp',
+        m2_l2: 'Кеш браузерів Google Chrome, Microsoft Edge та Mozilla Firefox',
+        m2_l3: 'Очищення кошика на всіх локальних дисках в один клік',
+        m3_title: 'Диспетчер процесів і пріоритетів',
+        m3_desc: "Повний список запущених процесів із відображенням PID, видавця, використаної пам'яті та поточного пріоритету.",
+        m3_l1: 'Зміна пріоритету процесу: Low, Below Normal, Normal, Above Normal, High, Realtime',
+        m3_l2: 'Фільтр та підсвічування довірених процесів за назвою видавця',
+        m3_l3: 'Миттєве примусове завершення завислих програм',
+        m4_title: 'Автозавантаження та швидкі дії',
+        m4_desc: 'Допомагає прискорити запуск Windows і вирішувати типові збої системи однією кнопкою.',
+        m4_l1: 'Зручні перемикачі для вмикання та вимикання програм в автозавантаженні',
+        m4_l2: 'Швидкий перезапуск Провідника Windows (explorer.exe)',
+        m4_l3: 'Очищення кешу DNS та активація схеми живлення «Висока продуктивність»',
+        dl_title: 'Як скачати та встановити YilitNes',
+        dl_sub: 'Оберіть зручний формат завантаження для Windows 10 або Windows 11 (64-bit).',
+        dl_rec: 'Рекомендовано',
+        dl_inst_desc: 'Стандартний інсталятор. Автоматично розпакує файли програми та створить ярлик на робочому столі й у меню «Пуск».',
+        dl_port_desc: 'Архів із готовою програмою, яка не потребує встановлення. Можна запускати з будь-якої папки або флешки.',
+        dl_ver: 'Версія:',
+        dl_os: 'Сумісність:',
+        dl_file: 'Файл:',
+        dl_btn_inst: 'Скачати інсталятор (.exe)',
+        dl_btn_port: 'Скачати архів (.zip)',
+        inst_steps_title: '3 кроки для правильного запуску:',
+        s1_t: '1. Завантажте файл',
+        s1_d: 'Натисніть кнопку завантаження вище та збережіть інсталятор або архів на ПК.',
+        s2_t: '2. Підтвердіть запуск у Windows',
+        s2_d: "Якщо з'явиться вікно SmartScreen («Windows захистила ваш ПК»), натисніть «Докладніше» → «Виконати в будь-якому разі».",
+        s3_t: '3. Запускайте від імені адміністратора',
+        s3_d: 'Для очищення системної папки Windows Temp, зміни високих пріоритетів та скидання DNS потрібні права адміністратора.',
+        guide_title: 'Як користуватись програмою',
+        guide_sub: 'Оберіть потрібний розділ меню YilitNes, щоб переглянути покрокову інструкцію.',
+        gt_1: '1. Очищення ОЗП',
+        gt_2: '2. Видалення сміття',
+        gt_3: '3. Процеси та пріоритети',
+        gt_4: '4. Автозавантаження',
+        gt_5: '5. Налаштування',
+        faq_title: 'Часті запитання',
+        back_top: 'На початок сторінки ↑',
+      },
+      en: {
+        nav_about: 'About App',
+        nav_download: 'How to Download',
+        nav_guide: 'How to Use',
+        nav_faq: 'FAQ',
+        btn_get: 'Download',
+        hero_title: 'YilitNes — Fast Windows Cleaning & System Control',
+        hero_desc:
+          'A lightweight utility to monitor PC load, instantly free up RAM, delete temporary junk files, manage process priorities, and control startup apps.',
+        hero_btn_dl: 'Go to Downloads',
+        hero_btn_guide: 'User Guide',
+        stat_1: 'Native RAM Cleaning',
+        stat_2: 'All tools in one window',
+        stat_3: 'Ukrainian, English, Russian',
+        stat_4: 'No subscriptions or ads',
+        about_title: 'What YilitNes Can Do',
+        about_sub: 'Built for fast Windows maintenance without bloated settings or background services.',
+        m1_title: 'Resource Monitoring & RAM Cleaner',
+        m1_desc: 'Displays live CPU, RAM, and disk load in percentages and gigabytes.',
+        m1_l1: 'Shows CPU model, total RAM, and OS build info',
+        m1_l2: 'Trims process working sets using WinAPI EmptyWorkingSet',
+        m1_l3: 'Frees memory before launching games or heavy apps',
+        m2_title: 'System Junk & Cache Cleaner',
+        m2_desc: 'Scans Windows temp folders and browser caches, showing exact sizes before removal.',
+        m2_l1: 'User %TEMP% directory and system Windows Temp folder',
+        m2_l2: 'Google Chrome, Microsoft Edge, and Mozilla Firefox caches',
+        m2_l3: 'Empty Recycle Bin across all drives in one click',
+        m3_title: 'Process & Priority Manager',
+        m3_desc: 'Full list of running processes with PID, publisher, memory usage, and current priority.',
+        m3_l1: 'Change priority: Low, Below Normal, Normal, Above Normal, High, Realtime',
+        m3_l2: 'Filter and highlight trusted publishers',
+        m3_l3: 'Force-terminate unresponsive applications immediately',
+        m4_title: 'Startup Manager & Quick Actions',
+        m4_desc: 'Speed up Windows boot time and fix common system glitches with one click.',
+        m4_l1: 'Simple toggles to enable or disable startup programs',
+        m4_l2: 'Quick restart for Windows Explorer (explorer.exe)',
+        m4_l3: 'Flush DNS cache and enable High Performance power plan',
+        dl_title: 'How to Download & Install YilitNes',
+        dl_sub: 'Choose your preferred download option for Windows 10 or Windows 11 (64-bit).',
+        dl_rec: 'Recommended',
+        dl_inst_desc: 'Standard installer. Automatically extracts files and creates Desktop & Start Menu shortcuts.',
+        dl_port_desc: 'Ready-to-run archive requiring no installation. Run it from any folder or USB drive.',
+        dl_ver: 'Version:',
+        dl_os: 'Compatibility:',
+        dl_file: 'File:',
+        dl_btn_inst: 'Download Installer (.exe)',
+        dl_btn_port: 'Download Portable (.zip)',
+        inst_steps_title: '3 steps to get started:',
+        s1_t: '1. Download the file',
+        s1_d: 'Click one of the download buttons above and save the installer or archive.',
+        s2_t: '2. Allow Windows SmartScreen',
+        s2_d: 'If SmartScreen appears ("Windows protected your PC"), click "More info" → "Run anyway".',
+        s3_t: '3. Run as Administrator',
+        s3_d: 'Administrator privileges are required to clean Windows Temp, set High priority, and flush DNS.',
+        guide_title: 'How to Use YilitNes',
+        guide_sub: 'Select a tab from the YilitNes menu below to view step-by-step instructions.',
+        gt_1: '1. RAM Cleaning',
+        gt_2: '2. Junk Removal',
+        gt_3: '3. Processes & Priority',
+        gt_4: '4. Startup Apps',
+        gt_5: '5. Settings',
+        faq_title: 'Frequently Asked Questions',
+        back_top: 'Back to top ↑',
+      },
+    };
+
+    document.querySelectorAll('.lang-btn').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.lang-btn').forEach((b) => b.classList.remove('active'));
+        btn.classList.add('active');
+        const lang = btn.dataset.lang;
+        document.querySelectorAll('[data-i18n]').forEach((el) => {
+          const key = el.dataset.i18n;
+          if (i18n[lang][key]) el.textContent = i18n[lang][key];
+        });
+      });
+    });
+  </script>
+</body>
+</html>
