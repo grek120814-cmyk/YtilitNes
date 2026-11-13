@@ -35,12 +35,28 @@
       background-color: var(--bg-main);
       color: var(--text-main);
       line-height: 1.65;
+      overflow-x: hidden;
     }
 
     .container {
       max-width: 1120px;
       margin: 0 auto;
       padding: 0 24px;
+    }
+
+    /* Анімації появи */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(16px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes pulseGlow {
+      0%, 100% { box-shadow: 0 0 15px rgba(59, 130, 246, 0.2); }
+      50% { box-shadow: 0 0 30px rgba(59, 130, 246, 0.45); }
+    }
+
+    .animate-in {
+      animation: fadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
 
     /* Навігація */
@@ -68,6 +84,11 @@
       font-weight: 700;
       color: var(--text-main);
       text-decoration: none;
+      transition: transform 0.2s;
+    }
+
+    .logo:hover {
+      transform: scale(1.03);
     }
 
     .logo-badge {
@@ -81,6 +102,7 @@
       font-size: 0.9rem;
       font-weight: 800;
       color: #fff;
+      box-shadow: 0 0 12px rgba(59, 130, 246, 0.4);
     }
 
     .nav-links {
@@ -92,11 +114,12 @@
       color: var(--text-muted);
       text-decoration: none;
       font-size: 0.95rem;
-      transition: color 0.2s;
+      transition: color 0.2s, transform 0.2s;
     }
 
     .nav-links a:hover {
       color: var(--text-main);
+      transform: translateY(-1px);
     }
 
     .nav-right {
@@ -122,6 +145,7 @@
       font-weight: 600;
       border-radius: 6px;
       cursor: pointer;
+      transition: all 0.2s;
     }
 
     .lang-btn.active {
@@ -140,7 +164,7 @@
       font-weight: 600;
       cursor: pointer;
       text-decoration: none;
-      transition: all 0.2s ease;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     .btn-primary {
@@ -148,11 +172,13 @@
       color: #fff;
       padding: 10px 20px;
       font-size: 0.95rem;
+      animation: pulseGlow 3s infinite;
     }
 
     .btn-primary:hover {
       background: var(--accent-hover);
-      transform: translateY(-1px);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
     }
 
     .btn-secondary {
@@ -165,6 +191,8 @@
 
     .btn-secondary:hover {
       background: var(--bg-hover);
+      border-color: var(--text-muted);
+      transform: translateY(-2px);
     }
 
     .btn-lg {
@@ -174,9 +202,9 @@
 
     /* Головний екран (Hero) */
     .hero {
-      padding: 84px 0 76px;
+      padding: 90px 0 80px;
       text-align: center;
-      background: radial-gradient(circle at 50% 0%, var(--accent-glow) 0%, transparent 62%);
+      background: radial-gradient(circle at 50% 0%, var(--accent-glow) 0%, transparent 65%);
     }
 
     .version-pill {
@@ -191,12 +219,13 @@
       color: #60a5fa;
       font-weight: 600;
       margin-bottom: 22px;
+      box-shadow: inset 0 1px 1px rgba(255,255,255,0.05);
     }
 
     .hero h1 {
-      font-size: 3.1rem;
+      font-size: 3.2rem;
       line-height: 1.15;
-      max-width: 780px;
+      max-width: 800px;
       margin: 0 auto 20px;
       letter-spacing: -0.6px;
     }
@@ -226,6 +255,15 @@
       border: 1px solid var(--border);
       border-radius: var(--radius);
       padding: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    }
+
+    .stat-item {
+      transition: transform 0.2s;
+    }
+
+    .stat-item:hover {
+      transform: translateY(-3px);
     }
 
     .stat-item strong {
@@ -241,7 +279,7 @@
 
     /* Заголовки секцій */
     section {
-      padding: 80px 0;
+      padding: 84px 0;
     }
 
     .section-header {
@@ -278,11 +316,13 @@
       border: 1px solid var(--border);
       border-radius: var(--radius);
       padding: 30px;
-      transition: border-color 0.2s;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     .module-card:hover {
       border-color: var(--accent);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.4);
     }
 
     .module-num {
@@ -338,6 +378,11 @@
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+      transition: transform 0.3s;
+    }
+
+    .dl-card:hover {
+      transform: translateY(-3px);
     }
 
     .dl-card.featured {
@@ -389,6 +434,23 @@
       color: var(--text-muted);
     }
 
+    .virusTotal-link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      margin-top: 10px;
+      font-size: 0.85rem;
+      color: #60a5fa;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .virusTotal-link:hover {
+      color: #93c5fd;
+      text-decoration: underline;
+    }
+
     .install-steps {
       margin-top: 36px;
       background: var(--bg-surface);
@@ -408,6 +470,14 @@
       gap: 20px;
     }
 
+    .mini-step {
+      transition: transform 0.2s;
+    }
+
+    .mini-step:hover {
+      transform: translateY(-2px);
+    }
+
     .mini-step strong {
       display: block;
       color: #60a5fa;
@@ -420,7 +490,7 @@
       font-size: 0.9rem;
     }
 
-    /* Як користуватись (Інструкція з вкладками) */
+    /* Інструкція з вкладками */
     .guide-section {
       background: var(--bg-surface);
       border-top: 1px solid var(--border);
@@ -444,18 +514,20 @@
       font-size: 0.92rem;
       font-weight: 600;
       cursor: pointer;
-      transition: 0.2s;
+      transition: all 0.25s;
     }
 
     .guide-tab:hover {
       color: var(--text-main);
       background: var(--bg-hover);
+      transform: translateY(-2px);
     }
 
     .guide-tab.active {
       background: var(--accent);
       border-color: var(--accent);
       color: #fff;
+      box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
     }
 
     .guide-panel {
@@ -466,6 +538,7 @@
       padding: 34px;
       max-width: 860px;
       margin: 0 auto;
+      animation: fadeIn 0.4s ease forwards;
     }
 
     .guide-panel.active {
@@ -496,6 +569,11 @@
       border: 1px solid var(--border);
       padding: 16px;
       border-radius: 10px;
+      transition: transform 0.2s;
+    }
+
+    .guide-step-item:hover {
+      transform: translateX(4px);
     }
 
     .step-badge {
@@ -522,7 +600,85 @@
       font-size: 0.9rem;
     }
 
+    /* Секція Відгуків (Reviews) */
+    .reviews-section {
+      background: var(--bg-main);
+    }
+
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .review-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 26px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: all 0.3s;
+    }
+
+    .review-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-4px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    }
+
+    .review-stars {
+      color: #f59e0b;
+      font-size: 1rem;
+      margin-bottom: 12px;
+      letter-spacing: 2px;
+    }
+
+    .review-text {
+      color: var(--text-muted);
+      font-size: 0.92rem;
+      margin-bottom: 20px;
+      font-style: italic;
+    }
+
+    .review-author {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      border-top: 1px solid var(--border);
+      padding-top: 14px;
+    }
+
+    .author-avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #3b82f6, #6366f1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      color: #fff;
+      font-size: 0.9rem;
+    }
+
+    .author-info strong {
+      display: block;
+      font-size: 0.9rem;
+    }
+
+    .author-info span {
+      font-size: 0.76rem;
+      color: var(--text-muted);
+    }
+
     /* FAQ */
+    .faq-section {
+      background: var(--bg-surface);
+      border-top: 1px solid var(--border);
+    }
+
     .faq-list {
       max-width: 820px;
       margin: 0 auto;
@@ -532,10 +688,15 @@
     }
 
     .faq-item {
-      background: var(--bg-surface);
+      background: var(--bg-card);
       border: 1px solid var(--border);
       border-radius: 10px;
       overflow: hidden;
+      transition: border-color 0.2s;
+    }
+
+    .faq-item:hover {
+      border-color: rgba(59, 130, 246, 0.4);
     }
 
     .faq-question {
@@ -558,6 +719,7 @@
       padding: 0 22px 18px;
       color: var(--text-muted);
       font-size: 0.94rem;
+      animation: fadeIn 0.3s ease;
     }
 
     .faq-item.open .faq-answer {
@@ -607,6 +769,7 @@
     .footer a {
       color: var(--text-muted);
       text-decoration: none;
+      transition: color 0.2s;
     }
 
     .footer a:hover {
@@ -621,7 +784,8 @@
       .hero-stats,
       .modules-grid,
       .download-grid,
-      .steps-row {
+      .steps-row,
+      .reviews-grid {
         grid-template-columns: 1fr;
       }
 
@@ -643,6 +807,7 @@
         <a href="#about" data-i18n="nav_about">Про програму</a>
         <a href="#download" data-i18n="nav_download">Як скачати</a>
         <a href="#guide" data-i18n="nav_guide">Як користуватись</a>
+        <a href="#reviews" data-i18n="nav_reviews">Відгуки</a>
         <a href="#faq" data-i18n="nav_faq">Питання</a>
       </nav>
       <div class="nav-right">
@@ -658,7 +823,7 @@
   <main>
     <!-- Hero -->
     <section class="hero">
-      <div class="container">
+      <div class="container animate-in">
         <div class="version-pill">Windows 10 / 11 (x64) • NVStudio</div>
         <h1 data-i18n="hero_title">YilitNes — швидке очищення та контроль системи Windows</h1>
         <p data-i18n="hero_desc">
@@ -749,7 +914,7 @@
     <section id="download">
       <div class="container">
         <div class="section-header">
-          <h2 data-i18n="dl_title">Як скачати та встановити YilitNes</h2>
+          <h2 data-i18n="dl_title">Як скачати та встановити YtilitNes</h2>
           <p data-i18n="dl_sub">Оберіть зручний формат завантаження для Windows 10 або Windows 11 (64-bit).</p>
         </div>
 
@@ -757,17 +922,20 @@
           <div class="dl-card featured">
             <div>
               <span class="dl-tag" data-i18n="dl_rec">Рекомендовано</span>
-              <h3>YilitNes Installer (Setup)</h3>
+              <h3>YtilitNes Installer (Setup)</h3>
               <p data-i18n="dl_inst_desc">Стандартний інсталятор. Автоматично розпакує файли програми та створить ярлик на робочому столі й у меню «Пуск».</p>
             </div>
             <div>
               <div class="dl-meta">
                 <div><span data-i18n="dl_ver">Версія:</span><strong>1.0 Release</strong></div>
                 <div><span data-i18n="dl_os">Сумісність:</span><strong>Windows 10 / 11 (x64)</strong></div>
-                <div><span data-i18n="dl_file">Файл:</span><strong>YilitNes_Setup.exe</strong></div>
+                <div><span data-i18n="dl_file">Файл:</span><strong>YtilitNes.exe</strong></div>
               </div>
-              <a href="YilitNes_Setup.exe" download class="btn btn-primary btn-lg" style="width: 100%;" onclick="notifyDownload('YilitNes_Setup.exe')" data-i18n="dl_btn_inst">
+              <a href="YtilitNes.exe" download class="btn btn-primary btn-lg" style="width: 100%;" onclick="notifyDownload('YtilitNes.exe')" data-i18n="dl_btn_inst">
                 Скачати інсталятор (.exe)
+              </a>
+              <a href="https://www.virustotal.com/gui/home/upload" target="_blank" class="virusTotal-link" data-i18n="vt_link">
+                🛡 Перевірити файл на VirusTotal ↗
               </a>
             </div>
           </div>
@@ -775,17 +943,20 @@
           <div class="dl-card">
             <div>
               <span class="dl-tag">Portable</span>
-              <h3>YilitNes Portable (ZIP)</h3>
+              <h3>YtilitNes Portable (ZIP)</h3>
               <p data-i18n="dl_port_desc">Архів із готовою програмою, яка не потребує встановлення. Можна запускати з будь-якої папки або флешки.</p>
             </div>
             <div>
               <div class="dl-meta">
                 <div><span data-i18n="dl_ver">Версія:</span><strong>1.0 Release</strong></div>
                 <div><span data-i18n="dl_os">Сумісність:</span><strong>Windows 10 / 11 (x64)</strong></div>
-                <div><span data-i18n="dl_file">Файл:</span><strong>YilitNes_Portable.zip</strong></div>
+                <div><span data-i18n="dl_file">Файл:</span><strong>YtilitNes_Portable.zip</strong></div>
               </div>
-              <a href="YilitNes_Portable.zip" download class="btn btn-secondary btn-lg" style="width: 100%;" onclick="notifyDownload('YilitNes_Portable.zip')" data-i18n="dl_btn_port">
+              <a href="YtilitNes_Portable.zip" download class="btn btn-secondary btn-lg" style="width: 100%;" onclick="notifyDownload('YtilitNes_Portable.zip')" data-i18n="dl_btn_port">
                 Скачати архів (.zip)
+              </a>
+              <a href="https://www.virustotal.com/gui/home/upload" target="_blank" class="virusTotal-link" data-i18n="vt_link_zip">
+                🛡 Перевірити архів на VirusTotal ↗
               </a>
             </div>
           </div>
@@ -953,8 +1124,62 @@
       </div>
     </section>
 
+    <!-- Відгуки (Reviews) -->
+    <section class="reviews-section" id="reviews">
+      <div class="container">
+        <div class="section-header">
+          <h2 data-i18n="rev_title">Відгуки користувачів</h2>
+          <p data-i18n="rev_sub">Що кажуть ті, хто вже встановив YilitNes для оптимізації свого ПК.</p>
+        </div>
+
+        <div class="reviews-grid">
+          <div class="review-card">
+            <div>
+              <div class="review-stars">★★★★★</div>
+              <p class="review-text" data-i18n="rev_1_txt">«Дуже зручна і легка утиліта. Немає нічого зайвого, оперативку чистить чудово в один клік перед іграми. Рекомендую!»</p>
+            </div>
+            <div class="review-author">
+              <div class="author-avatar">О</div>
+              <div class="author-info">
+                <strong>Олександр С.</strong>
+                <span data-i18n="rev_user_1">Геймер, Windows 11</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="review-card">
+            <div>
+              <div class="review-stars">★★★★★</div>
+              <p class="review-text" data-i18n="rev_2_txt">«Шукав щось просте для очищення кешу браузерів та тимчасових папок. YilitNes справився ідеально, інтерфейс топ.»</p>
+            </div>
+            <div class="review-author">
+              <div class="author-avatar">М</div>
+              <div class="author-info">
+                <strong>Максим Д.</strong>
+                <span data-i18n="rev_user_2">Розробник, Windows 10</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="review-card">
+            <div>
+              <div class="review-stars">★★★★★</div>
+              <p class="review-text" data-i18n="rev_3_txt">«Круто, що є перемикач пріоритетів процесів та автозавантаження. Працює швидко і без зайвих фонових служб.»</p>
+            </div>
+            <div class="review-author">
+              <div class="author-avatar">Н</div>
+              <div class="author-info">
+                <strong>Нестор</strong>
+                <span data-i18n="rev_user_3">Користувач ПК</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- FAQ -->
-    <section id="faq">
+    <section class="faq-section" id="faq">
       <div class="container">
         <div class="section-header">
           <h2 data-i18n="faq_title">Часті запитання</h2>
@@ -1005,7 +1230,7 @@
   <div class="toast" id="toast"></div>
 
   <script>
-    // 1. Перемикання вкладок в інструкції «Як користуватись»
+    // 1. Перемикання вкладок в інструкції «Як користуватись» з анімацією
     const guideTabs = document.querySelectorAll('.guide-tab');
     const guidePanels = document.querySelectorAll('.guide-panel');
 
@@ -1015,7 +1240,8 @@
         guidePanels.forEach((p) => p.classList.remove('active'));
 
         tab.classList.add('active');
-        document.getElementById(`guide-${tab.dataset.guide}`).classList.add('active');
+        const panel = document.getElementById(`guide-${tab.dataset.guide}`);
+        panel.classList.add('active');
       });
     });
 
@@ -1045,12 +1271,13 @@
       }, 3500);
     }
 
-    // 4. Перемикання мови сайту (UA / EN)
+    // 4. Локалізація сайту (UA / EN) з повним словником включаючи відгуки та VirusTotal
     const i18n = {
       uk: {
         nav_about: 'Про програму',
         nav_download: 'Як скачати',
         nav_guide: 'Як користуватись',
+        nav_reviews: 'Відгуки',
         nav_faq: 'Питання',
         btn_get: 'Скачати',
         hero_title: 'YilitNes — швидке очищення та контроль системи Windows',
@@ -1084,7 +1311,7 @@
         m4_l1: 'Зручні перемикачі для вмикання та вимикання програм в автозавантаженні',
         m4_l2: 'Швидкий перезапуск Провідника Windows (explorer.exe)',
         m4_l3: 'Очищення кешу DNS та активація схеми живлення «Висока продуктивність»',
-        dl_title: 'Як скачати та встановити YilitNes',
+        dl_title: 'Як скачати та встановити YtilitNes',
         dl_sub: 'Оберіть зручний формат завантаження для Windows 10 або Windows 11 (64-bit).',
         dl_rec: 'Рекомендовано',
         dl_inst_desc: 'Стандартний інсталятор. Автоматично розпакує файли програми та створить ярлик на робочому столі й у меню «Пуск».',
@@ -1094,6 +1321,8 @@
         dl_file: 'Файл:',
         dl_btn_inst: 'Скачати інсталятор (.exe)',
         dl_btn_port: 'Скачати архів (.zip)',
+        vt_link: '🛡 Перевірити файл на VirusTotal ↗',
+        vt_link_zip: '🛡 Перевірити архів на VirusTotal ↗',
         inst_steps_title: '3 кроки для правильного запуску:',
         s1_t: '1. Завантажте файл',
         s1_d: 'Натисніть кнопку завантаження вище та збережіть інсталятор або архів на ПК.',
@@ -1108,6 +1337,14 @@
         gt_3: '3. Процеси та пріоритети',
         gt_4: '4. Автозавантаження',
         gt_5: '5. Налаштування',
+        rev_title: 'Відгуки користувачів',
+        rev_sub: 'Що кажуть ті, хто вже встановив YilitNes для оптимізації свого ПК.',
+        rev_1_txt: '«Дуже зручна і легка утиліта. Немає нічого зайвого, оперативку чистить чудово в один клік перед іграми. Рекомендую!»',
+        rev_user_1: 'Геймер, Windows 11',
+        rev_2_txt: '«Шукав щось просте для очищення кешу браузерів та тимчасових папок. YilitNes справився ідеально, інтерфейс топ.»',
+        rev_user_2: 'Розробник, Windows 10',
+        rev_3_txt: '«Круто, що є перемикач пріоритетів процесів та автозавантаження. Працює швидко і без зайвих фонових служб.»',
+        rev_user_3: 'Користувач ПК',
         faq_title: 'Часті запитання',
         back_top: 'На початок сторінки ↑',
       },
@@ -1115,6 +1352,7 @@
         nav_about: 'About App',
         nav_download: 'How to Download',
         nav_guide: 'How to Use',
+        nav_reviews: 'Reviews',
         nav_faq: 'FAQ',
         btn_get: 'Download',
         hero_title: 'YilitNes — Fast Windows Cleaning & System Control',
@@ -1148,7 +1386,7 @@
         m4_l1: 'Simple toggles to enable or disable startup programs',
         m4_l2: 'Quick restart for Windows Explorer (explorer.exe)',
         m4_l3: 'Flush DNS cache and enable High Performance power plan',
-        dl_title: 'How to Download & Install YilitNes',
+        dl_title: 'How to Download & Install YtilitNes',
         dl_sub: 'Choose your preferred download option for Windows 10 or Windows 11 (64-bit).',
         dl_rec: 'Recommended',
         dl_inst_desc: 'Standard installer. Automatically extracts files and creates Desktop & Start Menu shortcuts.',
@@ -1158,6 +1396,8 @@
         dl_file: 'File:',
         dl_btn_inst: 'Download Installer (.exe)',
         dl_btn_port: 'Download Portable (.zip)',
+        vt_link: '🛡 Check file on VirusTotal ↗',
+        vt_link_zip: '🛡 Check archive on VirusTotal ↗',
         inst_steps_title: '3 steps to get started:',
         s1_t: '1. Download the file',
         s1_d: 'Click one of the download buttons above and save the installer or archive.',
@@ -1172,6 +1412,14 @@
         gt_3: '3. Processes & Priority',
         gt_4: '4. Startup Apps',
         gt_5: '5. Settings',
+        rev_title: 'User Reviews',
+        rev_sub: 'What people who installed YilitNes say about system optimization.',
+        rev_1_txt: '"Very convenient and lightweight utility. Nothing extra, cleans RAM perfectly in one click before gaming. Recommended!"',
+        rev_user_1: 'Gamer, Windows 11',
+        rev_2_txt: '"Was looking for something simple to clean browser caches and temp folders. YilitNes handled it perfectly, top-tier interface."',
+        rev_user_2: 'Developer, Windows 10',
+        rev_3_txt: '"Awesome to have process priority switchers and startup manager. Works fast and without heavy background services."',
+        rev_user_3: 'PC User',
         faq_title: 'Frequently Asked Questions',
         back_top: 'Back to top ↑',
       },
